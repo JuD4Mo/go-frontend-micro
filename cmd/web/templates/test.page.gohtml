@@ -44,6 +44,7 @@
     let sent = document.getElementById("payload");
     let received = document.getElementById("received");
     let mailBtn = document.getElementById("mailBtn");
+    const brokerBaseURL = "{{.BrokerURL}}";
 
     mailBtn.addEventListener("click", function(){
 
@@ -67,7 +68,7 @@
                 headers: headers,
             }
 
-                fetch("http://localhost:8081/handle", body).then((response) => response.json())
+                fetch(`${brokerBaseURL}/handle`, body).then((response) => response.json())
             .then((data) => {
                 sent.innerHTML = JSON.stringify(payload, undefined, 4);
                 received.innerHTML = JSON.stringify(data, undefined, 4)
@@ -100,7 +101,7 @@
             headers: headers,
         }
 
-        fetch("http://localhost:8081/log-grpc", body).then((response) => response.json())
+        fetch(`${brokerBaseURL}/log-grpc`, body).then((response) => response.json())
         .then((data) => {
             sent.innerHTML = JSON.stringify(payload, undefined, 4);
             received.innerHTML = JSON.stringify(data, undefined, 4)
@@ -133,7 +134,7 @@
             headers: headers,
         }
 
-        fetch("http://localhost:8081/handle", body).then((response) => response.json())
+        fetch(`${brokerBaseURL}/handle`, body).then((response) => response.json())
         .then((data) => {
             sent.innerHTML = JSON.stringify(payload, undefined, 4);
             received.innerHTML = JSON.stringify(data, undefined, 4)
@@ -168,7 +169,7 @@
                 headers: headers,
             }
 
-                fetch("http://localhost:8081/handle", body).then((response) => response.json())
+                fetch(`${brokerBaseURL}/handle`, body).then((response) => response.json())
             .then((data) => {
                 sent.innerHTML = JSON.stringify(payload, undefined, 4);
                 received.innerHTML = JSON.stringify(data, undefined, 4)
@@ -188,7 +189,7 @@
         const body = {
             method: 'POST',
         }
-        fetch("http://localhost:8081", body).then((response) => response.json())
+        fetch(brokerBaseURL, body).then((response) => response.json())
         .then((data) => {
             sent.innerHTML ="empty post request";
             received.innerHTML = JSON.stringify(data, undefined, 4)
